@@ -10,7 +10,7 @@ azp() {
     fi
     if [ -z "$TMP" ] 
     then
-        echo "No paramter passed and RESOURCE_GROUP not set."
+        echo "No parameter passed and RESOURCE_GROUP not set."
         return 1
     fi
     ACCOUNT=$(az account show)
