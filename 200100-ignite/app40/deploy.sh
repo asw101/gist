@@ -1,9 +1,5 @@
 #!/bin/bash
-set -e
-
-# check for env vars
-[[ -z "$CLIENT_ID" ]] && echo "CLIENT_ID not set" && return 1
-[[ -z "$CLIENT_SECRET" ]] && echo "CLIENT_SECRET not set" && return 1
+set -euo pipefail
 
 # Credentials
 sqlServerUser=sqladmin
