@@ -1,6 +1,6 @@
 # Azure $RANDOM_STR
 
-A deterministic way to generate a 6 character unique suffix for things in Azure that need to be globally unique.
+A deterministic way to generate a 6 character unique suffix/prefix for things in Azure that need to be globally unique.
 
 ```bash
 RESOURCE_GROUP='200200-hello-gopher'
