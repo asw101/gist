@@ -1,0 +1,4 @@
+#cloud-config
+runcmd:
+- curl -OL 'https://raw.githubusercontent.com/asw101/gist/200700-cloud-init/200700-cloud-init/cloud-init.sh'
+- bash cloud-init.sh
