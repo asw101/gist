@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+function create_azure_files_moodle_share
+{
+    local storageAccountName=$1
+    local storageAccountKey=$2
+    local logFilePath=$3
+    local fileServerDiskSize=$4
+
+    az storage share create \
+        --name moodle \
+        --account-name $storageAccountName \
+        --account-key $storageAccountKey \
+        --fail-on-exist >>$logFilePath \
+        --quota $fileServerDiskSize
+}
+
 function setup_and_mount_azure_files_moodle_share
 {
     local storageAccountName=$1
