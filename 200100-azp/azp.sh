@@ -1,3 +1,5 @@
+AZP_ACCOUNT=''
+
 azp() {
     TMP=''
     if [ ! -z "$1" ] 
@@ -13,10 +15,14 @@ azp() {
         echo "No parameter passed and RESOURCE_GROUP not set."
         return 1
     fi
-    ACCOUNT=$(az account show)
-    SUBSCRIPTION_ID=$(echo $ACCOUNT | jq -r .id)
-    TENANT_ID=$(echo $ACCOUNT | jq -r .tenantId)
+    [[ -z "$AZP_ACCOUNT" ]] && AZP_ACCOUNT=$(az account show)
+    SUBSCRIPTION_ID=$(echo $AZP_ACCOUNT | jq -r .id)
+    TENANT_ID=$(echo $AZP_ACCOUNT | jq -r .tenantId)
     open "https://portal.azure.com/#@${TENANT_ID}/resource/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${TMP}/overview"
+}
+
+azpreset() {
+    AZP_ACCOUNT=''
 }
 
 azpi() {
