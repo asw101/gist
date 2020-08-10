@@ -11,7 +11,6 @@ function create_azure_files_moodle_share
         --name moodledata \
         --account-name $storageAccountName \
         --account-key $storageAccountKey \
-        --fail-on-exist >>$logFilePath \
         --quota $fileServerDiskSize
 }
 
@@ -44,6 +43,10 @@ create_azure_files_moodle_share $storageAccountName $storageAccountKey /tmp/wabs
 # Set up and mount Azure Files share. Must be done after nginx is installed because of www-data user/group
 echo -e '\n\rSetting up and mounting Azure Files share on //'$storageAccountName'.file.core.windows.net/moodledata on /moodle/moodledata\n\r'
 setup_and_mount_azure_files_moodle_share $storageAccountName $storageAccountKey
-# Move the local installation over to the Azure Files
-echo -e '\n\rMoving locally installed moodle over to Azure Files'
-cp -a /moodle/_moodledata/* /moodle/moodledata || true # Ignore case sensitive directory copy failure
+
+if ! [ "$(ls -A /moodle/moodledata)" ]; then
+	# Move the local installation over to the Azure Files
+	echo -e '\n\rMoving locally installed moodle over to Azure Files'
+	cp -a /moodle/_moodledata/* /moodle/moodledata || true # Ignore case sensitive directory copy failure
+fi
+
