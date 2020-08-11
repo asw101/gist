@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-echo "hello, world" > /tmp/output.txt
+echo "hello, world" | tee /tmp/output.txt
