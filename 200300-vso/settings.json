@@ -1,0 +1,7 @@
+{
+    "terminal.integrated.fontSize": 20,
+    "editor.fontSize": 20,
+    "debug.console.fontSize": 20,
+    "go.testEnvFile": "${workspaceFolder}/_/ENV.sh",
+    "go.testFlags": ["-v"]
+}
